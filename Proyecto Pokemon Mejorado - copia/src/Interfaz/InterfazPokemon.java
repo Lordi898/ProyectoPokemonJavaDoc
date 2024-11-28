@@ -5,15 +5,24 @@ import objeto.Pokemon;
 
 import java.util.Scanner;
 
+/**
+ * Clase que representa la interfaz principal para gestionar el juego de Pokémon.
+ * Se encarga de la interacción con el usuario y el flujo general del juego.
+ */
 public class InterfazPokemon {
     private Scanner teclado;
 
-    // Constructor
+    /**
+     * Constructor que inicializa la interfaz con un escáner para entrada de datos.
+     */
     public InterfazPokemon() {
         this.teclado = new Scanner(System.in);
     }
 
-    // Método Juego: Gestiona el flujo completo del juego.
+    /**
+     * Método principal que gestiona el flujo completo del juego.
+     * Incluye la creación del Pokémon del jugador y las batallas contra tres rivales.
+     */
     public void Juego() {
         System.out.println("¡Bienvenido al Juego de Pokémon!");
 
@@ -51,7 +60,13 @@ public class InterfazPokemon {
         }
     }
 
-    // Método Partida: Gestiona un combate completo entre dos Pokémon.
+    /**
+     * Gestiona un combate completo entre el Pokémon del jugador y el Pokémon rival.
+     *
+     * @param pokemonJugador El Pokémon del jugador.
+     * @param pokemonRival   El Pokémon rival.
+     * @return El Pokémon ganador del combate.
+     */
     public Pokemon Partida(Pokemon pokemonJugador, Pokemon pokemonRival) {
         Combate combate = new Combate(pokemonJugador, pokemonRival);
 
@@ -63,7 +78,11 @@ public class InterfazPokemon {
         return combate.Ganador();
     }
 
-    // Menú para la creación del Pokémon del jugador.
+    /**
+     * Muestra un menú para la creación del Pokémon del jugador, permitiendo elegir su nombre y tipo.
+     *
+     * @return El Pokémon creado por el jugador.
+     */
     public Pokemon menuCreacionPokemonJugador() {
         System.out.println("........................");
         System.out.println("Crea tu Pokémon......");
@@ -101,7 +120,12 @@ public class InterfazPokemon {
         return new Pokemon(nombre, tipo);
     }
 
-    // Selecciona el Pokémon rival basado en el número de combate.
+    /**
+     * Selecciona el Pokémon rival según el número de combate.
+     *
+     * @param numero El número del combate (1, 2 o 3).
+     * @return El Pokémon rival correspondiente.
+     */
     public Pokemon siguientePokemonRival(int numero) {
         return switch (numero) {
             case 1 -> new Pokemon("Caterpie", "tierra", 1);
@@ -111,7 +135,9 @@ public class InterfazPokemon {
         };
     }
 
-    // Mensaje para cuando el jugador gana el juego.
+    /**
+     * Muestra un mensaje de victoria cuando el jugador gana el juego.
+     */
     public void mostrarJuegoSuperado() {
         System.out.println("PULSE ENTER PARA CONTINUAR...");
         teclado.nextLine();
@@ -120,11 +146,12 @@ public class InterfazPokemon {
         System.out.println("++++ ERES UN MAESTRO POKEMON +++++");
     }
 
-    // Mensaje para cuando el jugador pierde el juego.
+    /**
+     * Muestra un mensaje cuando el jugador pierde el juego.
+     */
     public void mostrarFinPartida() {
         System.out.println("++++++++++ LO SIENTO +++++++++++");
         System.out.println("+++++ HAS SIDO ELIMINADO ++++++");
         System.out.println("+++++ VUELVE A INTENTARLO ++++++");
     }
 }
-
